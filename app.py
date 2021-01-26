@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 response = ""
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST','GET'])
 def ussd_callback():
 
     global response
@@ -40,5 +40,11 @@ def ussd_callback():
 
     return response
 
-    if __name__ == '__main__':
-        app.run(host="0.0.0.0", port=os.environ.get('PORT'))
+# A welcome message to test our server
+@app.route('/message')
+def index():
+    return "<h1>Welcome to our server !!</h1>"
+
+if __name__ == '__main__':
+        # app.run(host="0.0.0.0", port=os.environ.get('PORT'))
+        app.run(threaded=True, port=5000)
